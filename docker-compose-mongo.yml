@@ -1,14 +1,19 @@
-version: '2'
+version: "3.1"
+
 services:
 
   mongodb:
     image: mongo:latest
     container_name: "mongodb"
+    command: mongod --smallfiles
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
-    volumes:
-      - ./data/db:/data/db
     ports:
       - 27017:27017
-    command: mongod --smallfiles --logpath=/dev/null # --quiet
+    volumes:
+      - ./data/db:/data/db
+      - mongodb_data:/data/db
+
+volumes:
+  mongodb_data:
