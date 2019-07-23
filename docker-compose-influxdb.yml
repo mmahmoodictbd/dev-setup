@@ -1,0 +1,37 @@
+version: '3.3'
+
+services:
+
+  influxdb:
+    image: influxdb:latest
+    container_name: influxdb
+    ports:
+      - "8083:8083" # Admin interface
+      - "8086:8086" # HTTP API
+      - "8090:8090"
+    environment:
+      - INFLUXDB_DB=db0
+      - INFLUXDB_ADMIN_USER=admin
+      - INFLUXDB_ADMIN_PASSWORD=admin
+      - INFLUXDB_USER=admin
+      - INFLUXDB_USER_PASSWORD=admin
+      - INFLUXDB_ADMIN_ENABLED=true
+    volumes:
+      - influxdb-storage:/var/lib/influxdb
+
+# InfluxDB admin UI
+#  chronograf:
+#    image: chronograf:latest
+#    container_name: chronograf
+#    ports:
+#      - "8888:8888"
+#    environment:
+#      - INFLUXDB_URL=http://influxdb:8086
+#    links:
+#      - influxdb:influxdb
+#    volumes:
+#      - chronograf-storage:/var/lib/chronograf
+
+volumes:
+  influxdb-storage:
+  chronograf-storage:
