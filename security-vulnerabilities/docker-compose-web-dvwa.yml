@@ -1,0 +1,9 @@
+version: '3'
+
+services:
+
+  # https://github.com/ethicalhack3r/DVWA
+  web-dvwa:
+    image: vulnerables/web-dvwa
+    ports:
+      - 8021:80
