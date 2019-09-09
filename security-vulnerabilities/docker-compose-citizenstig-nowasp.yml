@@ -1,0 +1,10 @@
+version: '3'
+
+services:
+
+  nowasp:
+    image: citizenstig/nowasp
+    ports:
+      - 8022:80
+    environment:
+      MYSQL_PASS: password
