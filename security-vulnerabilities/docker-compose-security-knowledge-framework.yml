@@ -1,0 +1,13 @@
+version: '3'
+
+services:
+
+  # Access: https://localhost
+  # https://skf.readme.io/docs/first-run
+  nowasp:
+    image: blabla1337/skf-flask
+    ports:
+      - 443:443
+    environment:
+      JWT_SECRET: 88a9e1bc-2c64-4eb8-9a54-e69cbf7fbffc
+      ORIGIN: localhost
