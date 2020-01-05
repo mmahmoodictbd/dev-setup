@@ -15,5 +15,20 @@ services:
       - ./mysql/config:/etc/mysql/conf.d
       - mysql_data:/var/lib/mysql
 
+  # http://localhost:3307/
+  # username / pass: root / root
+
+  phpmyadmin:
+    container_name: phpmyadmin
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - '3307:80'
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      PMA_HOST: mysql
+    depends_on:
+      - mysql
+    restart: always
+
 volumes:
   mysql_data:
