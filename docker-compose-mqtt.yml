@@ -1,0 +1,13 @@
+version: '3.3'
+
+services:
+
+    hivemq:
+      container_name: hivemq
+      hostname: hivemq
+      image: hivemq/hivemq4
+      ports:
+        - 1883:1883
+        - 33080:8080 # admin user/pass: admin/hivemq
+
+
