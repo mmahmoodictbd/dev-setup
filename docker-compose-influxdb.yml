@@ -2,6 +2,7 @@ version: '3.3'
 
 services:
 
+  # Note: docker exec -it influxdb influx -execute 'SELECT * FROM measurementName' -database "db0"
   influxdb:
     image: influxdb:latest
     container_name: influxdb
