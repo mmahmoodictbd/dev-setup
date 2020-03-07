@@ -19,3 +19,19 @@ services:
     ports:
       - 1883:1883
       - 9001:9001
+
+  # MQTT to Kafka
+  simple-kafka-mqtt-connector:
+    image: arthurgrigo/simple-kafka-mqtt-connector:0.0.1-SNAPSHOT
+    restart: always
+    hostname: simple-kafka-mqtt-connector
+    container_name: simple-kafka-mqtt-connector
+    environment:
+      KAFKA_HOST: kafka
+      KAFKA_PORT: 9092
+      KAFKA_CLIENT_ID: simple-kafka-mqtt-connector-1
+      MQTT_HOST: mosquitto
+      MQTT_PORT: 1883
+      MQTT_CLIENT_ID: simple-kafka-mqtt-connector-1
+      MQTT_QOS: 2
+      TOPIC_MAPPING: MqttTopic>>>KafkaTopic;
