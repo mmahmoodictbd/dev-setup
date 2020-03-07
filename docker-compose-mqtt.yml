@@ -2,12 +2,20 @@ version: '3.3'
 
 services:
 
-    hivemq:
-      container_name: hivemq
-      hostname: hivemq
-      image: hivemq/hivemq4
-      ports:
-        - 1883:1883
-        - 33080:8080 # admin user/pass: admin/hivemq
+  # Use HiveMQ or Mosquitto
 
+  hivemq:
+    container_name: hivemq
+    hostname: hivemq
+    image: hivemq/hivemq4
+    ports:
+      - 1883:1883
+      - 33080:8080 # admin user/pass: admin/hivemq
 
+  mosquitto:
+    container_name: mosquitto
+    hostname: mosquitto
+    image: eclipse-mosquitto
+    ports:
+      - 1883:1883
+      - 9001:9001
