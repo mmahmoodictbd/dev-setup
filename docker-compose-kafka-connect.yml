@@ -133,4 +133,18 @@ services:
       - kafka
       - kafka-rest-proxy
 
+#  YET ANOTHER APPROTCH
+#  fast-data-dev:
+#    image: lensesio/fast-data-dev:latest
+#    container_name: fast-data-dev
+#    ports:
+#      - "3030:3030" # Admin interface
+#    depends_on:
+#      - influxdb
+#    environment:
+#      - ADV_HOST=fast-data-dev
+#      - FORWARDLOGS=0
+#      - RUNTESTS=0
+#      - CONNECTORS=influxdb
+#      - DEBUG=1
 
