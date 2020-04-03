@@ -1,0 +1,23 @@
+version: '3.3'
+
+services:
+
+  # username/password: admin/password
+  jfrog-artifactory:
+    image: docker.bintray.io/jfrog/artifactory-oss:6.18.1
+    container_name: jfrog-artifactory
+    ports:
+      - 45000:8081
+    volumes:
+      - artifactory-data:/var/opt/jfrog/artifactory
+    restart: always
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 32000
+        hard: 40000
+
+volumes:
+  artifactory-data:
+
+
