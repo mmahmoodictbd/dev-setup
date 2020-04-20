@@ -1,0 +1,29 @@
+version: '3.3'
+
+services:
+
+  # Admin panel: https://localhost:943/admin/
+  # Client download: https://localhost:9443/admin/
+  # username/password: admin/password
+  openvpn-as:
+    image: linuxserver/openvpn-as:2.7.5-ls22
+    container_name: openvpn-as
+    cap_add:
+      - NET_ADMIN
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/Amsterdam
+      - INTERFACE=eth0 #optional
+    volumes:
+      - openvpn-config:/config
+    ports:
+      - 943:943
+      - 9443:9443
+      - 1194:1194/udp
+    restart: unless-stopped
+    network_mode: bridge
+
+volumes:
+  openvpn-config:
+
