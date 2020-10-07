@@ -1,0 +1,62 @@
+version: '3'
+
+services:
+
+  db:
+    image: mysql:8.0
+    container_name: db
+    restart: unless-stopped
+    environment:
+      - MYSQL_DATABASE=wordpress
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_USER=toot
+      - MYSQL_PASSWORD=root
+    volumes:
+      - db_data:/var/lib/mysql
+    command: '--default-authentication-plugin=mysql_native_password'
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    restart: always
+    ports:
+      - 3333:80
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORT: root
+
+  wordpress:
+    depends_on:
+      - db
+    image: wordpress
+    container_name: wordpress
+    restart: unless-stopped
+    environment:
+      - WORDPRESS_DB_HOST=db:3306
+      - WORDPRESS_DB_USER=root
+      - WORDPRESS_DB_PASSWORD=root
+      - WORDPRESS_DB_NAME=wordpress
+      - WORDPRESS_DEBUG=1
+    volumes:
+      - wp_data:/var/www/html
+    ports:
+      - 8080:80
+      - 443:443
+
+  wordpress-cli:
+    depends_on:
+      - db
+      - wordpress
+    image: wordpress:cli
+    user: xfs
+    command: >
+      /bin/sh -c '
+      sleep 10;
+      wp core install --path="/var/www/html" --url="http://localhost:8080" --title="Wow" --admin_user=root --admin_password=root --admin_email=root@toor.com
+      '
+    volumes:
+      - wp_data:/var/www/html
+
+volumes:
+  db_data:
+  wp_data:
