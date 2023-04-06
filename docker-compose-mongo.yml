@@ -5,14 +5,14 @@ services:
   mongodb:
     image: mongo:latest
     container_name: "mongodb"
-    command: mongod --smallfiles
+#    command: mongod --smallfiles
     environment:
       - MONGO_DATA_DIR=/data/db
       - MONGO_LOG_DIR=/dev/null
     ports:
       - 27017:27017
     volumes:
-      - ./data/db:/data/db
+#      - ./data/db:/data/db
       - mongodb_data:/data/db
 
 volumes:

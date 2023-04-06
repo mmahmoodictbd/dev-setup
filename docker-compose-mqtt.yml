@@ -19,6 +19,7 @@ services:
     ports:
       - 1883:1883
       - 9001:9001
+    restart: unless-stopped
 
   # MQTT to Kafka
   simple-kafka-mqtt-connector:

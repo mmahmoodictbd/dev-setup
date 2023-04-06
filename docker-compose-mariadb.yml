@@ -16,7 +16,6 @@ services:
 
   # http://localhost:3307/
   # username / pass: root / root
-
   phpmyadmin:
     container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
